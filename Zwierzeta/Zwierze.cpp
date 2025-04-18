@@ -13,7 +13,6 @@ void Zwierze::akcja(){
         ruch++;
         ruch %= 4;
     }
-    cout << "-> wyszło" << "\n";
 }
 
 void Zwierze::kolizja(Organizm *atakujacyOrganizm){

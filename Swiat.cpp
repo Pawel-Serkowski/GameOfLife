@@ -28,7 +28,6 @@ Swiat::Swiat(int szerokosc, int wysokosc){
 void Swiat::stworzPopulacje(){
     new Wilk(rand() % szerokosc, rand() % wysokosc);
     new Wilk(rand() % szerokosc, rand() % wysokosc);
-    new Wilk(rand() % szerokosc, rand() % wysokosc);
     new Owca(rand() % szerokosc, rand() % wysokosc);
     new Wilk(rand() % szerokosc, rand() % wysokosc);
     new Owca(rand() % szerokosc, rand() % wysokosc);
@@ -48,7 +47,7 @@ void Swiat::stworzPopulacje(){
     new WilczeJagody(rand()%szerokosc, rand()%wysokosc);
     new BarszczSosnowskiego(rand()%szerokosc, rand()%wysokosc);
 
-    new Czlowiek(rand() % szerokosc, rand() % wysokosc);
+    new Czlowiek(rand()%szerokosc, rand()%wysokosc);
 }
 
 Swiat* Swiat::getStanSwiata(){

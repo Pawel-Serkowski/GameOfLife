@@ -55,16 +55,26 @@ void Czlowiek::akcja(){
 void Czlowiek::kolizja(Organizm* atakujacyOrganizm){
     if(czyUmiejetnoscWlaczona){
         for(int i = -1; i <= 1; i++){
-            for(int j = -1; j <= 1; i++){
+            for(int j = -1; j <= 1; j++){
                 if(i == 0 && j == 0){
                     atakujacyOrganizm->zabij();
                     continue;
                 }
                 Organizm* temp = swiatRef->getOrganizm(getX()+i,getY()+j);
                 if(temp != nullptr){
+                    swiatRef->dodajLog(atakujacyOrganizm, "zostaj calopalony przez "+toString());
                     temp->zabij();
                 }
             }
+        }
+    }else{
+        if(atakujacyOrganizm->getSila() >= getSila()){
+            swiatRef->dodajLog(atakujacyOrganizm, "wygrywa walke z "+toString());
+            zabij();
+        }
+        else{
+            swiatRef->dodajLog(this, "wygrywa walke z "+atakujacyOrganizm->toString());
+            atakujacyOrganizm->zabij();
         }
     }
 }
