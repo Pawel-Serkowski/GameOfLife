@@ -1,15 +1,18 @@
 #include "Organizm.hpp"
 #include <string>
 
-Organizm::Organizm(int x, int y, string ikona, int sila, int inicjatywa){
+Organizm::Organizm(int x, int y, string ikona, int sila, int inicjatywa,string nazwa, int wiek){
     this->polozenie.x = x;
     this->polozenie.y = y;
     this->ikona = ikona;
     this->sila = sila;
     this->inicjatywa = inicjatywa;
-    this->dlugoscZycia = 0;
+    this->dlugoscZycia = wiek;
+    this->nazwa = nazwa;
     this->swiatRef = Swiat::getStanSwiata();
     czyZyje = true;
+    licznikUmiejetnosci = 0;
+    czyUmiejetnoscWlaczona= false;
 
     Organizm* temp = swiatRef->getOrganizm(polozenie.x, polozenie.y);
     swiatRef->dodajOrganizm(this);
@@ -28,6 +31,9 @@ Organizm::Organizm(const Organizm& copy){
     this->dlugoscZycia = copy.dlugoscZycia;
     this->swiatRef = copy.swiatRef;
     this->czyZyje = copy.czyZyje;
+    this->nazwa = copy.nazwa;
+    this->czyUmiejetnoscWlaczona = copy.czyUmiejetnoscWlaczona;
+    this->licznikUmiejetnosci = copy.licznikUmiejetnosci;
     swiatRef->dodajOrganizm(this);
 }
 
@@ -42,9 +48,9 @@ int Organizm::getY() const{
 }
 
 
-// char Organizm::getIcon() const{
-//     return ikona;
-// }
+string Organizm::getNazwa(){
+    return nazwa;
+}
 
 
 int Organizm::getSila() const{
@@ -132,4 +138,12 @@ bool Organizm::czyUcieczka(){
 
 void Organizm::setSila(int sila){
     this->sila = sila;
+}
+
+int Organizm::getLicznikUmiejetnosci(){
+    return this->licznikUmiejetnosci;
+}
+
+bool Organizm::getCzyUmiejetnoscWlanczona(){
+    return czyUmiejetnoscWlaczona;
 }

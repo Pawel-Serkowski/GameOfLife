@@ -2,7 +2,7 @@
 
 
 
-Zwierze::Zwierze(string ikona, int sila, int inicjatywa, int x, int y) : Organizm(x,y,ikona, sila, inicjatywa){}
+Zwierze::Zwierze(string ikona, int sila, int inicjatywa, int x, int y,string nazwa, int wiek) : Organizm(x,y,ikona, sila, inicjatywa, nazwa, wiek){}
 
 Zwierze::~Zwierze(){}
 

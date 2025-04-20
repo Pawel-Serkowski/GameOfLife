@@ -3,6 +3,6 @@
 
 class Trawa : public Roslina{
 public:
-    Trawa(int x, int y);
+    Trawa(int x, int y, int wiek = 0);
     Organizm* dziecko() override;
 };

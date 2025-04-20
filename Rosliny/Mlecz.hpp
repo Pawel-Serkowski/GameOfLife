@@ -3,7 +3,7 @@
 
 class Mlecz : public Roslina{
 public:
-    Mlecz(int x, int y);
+    Mlecz(int x, int y,int wiek = 0);
     void akcja() override;
     Organizm* dziecko() override;
 };

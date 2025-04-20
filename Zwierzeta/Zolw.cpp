@@ -1,6 +1,6 @@
 #include "Zolw.hpp"
 
-Zolw::Zolw(int x, int y) : Zwierze("🐢",2,1,x,y){};
+Zolw::Zolw(int x, int y, int sila, int wiek) : Zwierze("🐢",2,1,x,y,"Zolw",wiek){};
 
 void Zolw::akcja(){
     bool czyZmianaRuchu = rand()%4 == 3 ? true : false;

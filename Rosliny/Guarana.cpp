@@ -1,6 +1,6 @@
 #include "Guarana.hpp"
 
-Guarana::Guarana(int x, int y):Roslina("🌺",0,x,y){
+Guarana::Guarana(int x, int y, int wiek):Roslina("🌺",0,x,y,"Guarana",wiek){
     prawdopodobienstwo = 20;
 }
 

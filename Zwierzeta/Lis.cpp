@@ -1,6 +1,6 @@
 #include "Lis.hpp"
 
-Lis::Lis(int x, int y):Zwierze("🦊",3,7,x,y){};
+Lis::Lis(int x, int y, int sila, int wiek):Zwierze("🦊",3,7,x,y,"Lis",wiek){};
 
 void Lis::akcja(){
     int ruch = rand()%4;
