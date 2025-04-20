@@ -24,6 +24,9 @@ Swiat::Swiat(int szerokosc, int wysokosc){
     this->szerokosc = szerokosc;
     this->wysokosc = wysokosc;
 
+    czyLegendaPokazana = true;
+    czyLogiPokazane = true;
+
 }
 
 void Swiat::stworzPopulacje(){
@@ -88,8 +91,7 @@ void Swiat::rysujLogi(){
     cout<<"\033["<< wysokosc + 4 <<";"<<0<<"H";
     cout << "------Logi symulacji | Tura " << to_string(tura) << "------" << "\n";
     cout << logiSymulacji;
-    logiSymulacji="";
-    nrLog=0;
+
 }
 
 void Swiat::rysujRamke(){
@@ -112,6 +114,35 @@ void Swiat::rysujRamke(){
     cout << "+";
 }
 
+void Swiat::rysujLegende(){
+    int x = 2*szerokosc+8;
+    int y = 2;
+    string legenda[12];
+    legenda[0] = "---Legenda---";
+    legenda[1] = "🦌 - Antylopa";
+    legenda[2] = "🦊 - Lis";
+    legenda[3] = "🐑 - Owca";
+    legenda[4] = "🐺 - Wilk";
+    legenda[5] = "🐢 - Zolw";
+    legenda[6] = "🤠 - Czlowiek";
+    legenda[7] = "🍄 - Barszcz Sosnowskiego";
+    legenda[8] = "🌺 - Guarana";
+    legenda[9] = "🌼 - Mlecz";
+    legenda[10] = "🌱 - Trawa";
+    legenda[11] = "🫐 - Wilcze Jagody";
+
+
+    for(int i = 0; i < 7;i++){
+        cout<<"\033["<<y+i<<";"<<x<<"H";
+        cout << legenda[i];
+    }
+    x += 15;
+    for(int i = 0; i < 6;i++){
+        cout<<"\033["<<y+1+i<<";"<<x<<"H";
+        cout << legenda[7 + i];
+    }
+}
+
 void Swiat::rysujSwiat(){
     cout << "\033c";
     
@@ -119,8 +150,10 @@ void Swiat::rysujSwiat(){
         organizm->rysowanie();
     }
 
+    if(czyLegendaPokazana)rysujLegende();
     rysujRamke();
-    rysujLogi();
+    if(czyLogiPokazane)rysujLogi();
+
 }
 
 void Swiat::wykonajTure(){
@@ -142,18 +175,32 @@ void Swiat::symulacja(){
     while(getZnakZKlawiatury() != 'k');
     char znak;
     while(czySymulacjaDziala){
-        cout << "Kliknij opcje w turze: \n ENTER -> przejdz dalej \n s - zapisz stan swiata \n ESC - zakoncz symulacje\n";
+        if(!czyLogiPokazane) cout << "\033["<<wysokosc+4 << ";"<<0<<"H";
+        cout << "--------MENU--------\n";
+        cout << "Kliknij opcje w turze: \n ENTER -> przejdz dalej \n 's' - zapisz stan swiata \n 'q' - zakoncz symulacje\n 'l' - pokaz logi symulacji \n 'i' - pokaz legende symulacji\n";
+        cout << "--------------------\n";
         znak = getZnakZKlawiatury();
         switch(znak){
             case 's':
                 zapiszStanSwiata();
                 break;
-            case 27:
+            case 'i':
+                
+                czyLegendaPokazana = !czyLegendaPokazana;
+                rysujSwiat();
+                break;
+            case 'l':
+                czyLogiPokazane = !czyLogiPokazane;
+                rysujSwiat();
+                break;
+            case 'q':
                 czySymulacjaDziala = false;
                 break;
             default:
                 wykonajTure();
                 rysujSwiat();
+                logiSymulacji="";
+                nrLog=0;
         }
         
     }
