@@ -87,6 +87,16 @@ int Swiat::getWysokosc(){
     return wysokosc;
 }
 
+int Swiat::getTura(){
+    return this->tura;
+}
+
+void Swiat::setTura(int tura){
+    this->tura = tura;
+}
+
+
+
 void Swiat::rysujLogi(){
     cout<<"\033["<< wysokosc + 4 <<";"<<0<<"H";
     cout << "------Logi symulacji | Tura " << to_string(tura) << "------" << "\n";
@@ -252,7 +262,7 @@ void Swiat::zapiszStanSwiata(){
     if(plik.good()){
         cout << "Plik pomyślnie utworzony :) \n";
     }
-    plik << this->szerokosc << " " <<  this->wysokosc << endl;
+    plik << this->szerokosc << " " <<  this->wysokosc  << " " << getTura()<< endl;
 
     for(const auto& organizm : organizmy){
         if(organizm->getInicjatywa() == 0){
@@ -302,10 +312,11 @@ Swiat* Swiat::getStanSwiataZPliku(){
         else cout << "Nie istnieje taki plik! \n";        
     }while(!czyPlikPoprawny);
 
-    int w,h;
-    plikZSwiatem >> w >> h;
+    int w,h,t;
+    plikZSwiatem >> w >> h >> t;
     stanSwiata = new Swiat(w,h);
 
+    stanSwiata->setTura(t);
     string nazwa;
     int x,y,sila,wiek;  
 
