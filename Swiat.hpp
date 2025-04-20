@@ -53,6 +53,7 @@ public:
 
     int getSzerokosc();
     int getWysokosc();
+    int getTura();
     
     void stworzPopulacje();
     void symulacja();
@@ -63,5 +64,6 @@ public:
 
     char getZnakZKlawiatury();
     void zapiszStanSwiata();
+    void setTura(int tura);
     ~Swiat();
 };
