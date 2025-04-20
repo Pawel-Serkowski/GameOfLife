@@ -1,22 +1,13 @@
-10 10
-Trawa 1 5 1
-Mlecz 8 4 1
-Lis 6 7 3 1
-Lis 5 7 3 1
-Wilk 2 4 9 1
-Wilk 8 8 9 1
-Wilk 3 4 9 1
-Czlowiek 5 2 5 0 5 1
-Antylopa 7 5 4 1
-Owca 2 8 4 1
-Owca 5 9 4 1
-Zolw 9 2 2 1
-Zolw 2 0 2 1
-BarszczSosnowskiego 8 6 1
-WilczeJagody 9 9 1
-Guarana 8 7 1
-Guarana 3 6 1
-Mlecz 6 0 1
-Mlecz 7 4 1
-Trawa 1 4 1
-Trawa 6 6 1
+12 12 5
+Trawa 3 4 4
+WilczeJagody 2 6 4
+Trawa 1 2 4
+WilczeJagody 0 5 4
+Lis 2 2 6 4
+Czlowiek 4 8 5 0 5 4
+WilczeJagody 1 5 4
+Trawa 1 3 4
+Trawa 1 4 4
+WilczeJagody 2 5 4
+Trawa 2 4 4
+BarszczSosnowskiego 2 1 4

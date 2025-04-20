@@ -193,6 +193,7 @@ void Swiat::symulacja(){
         switch(znak){
             case 's':
                 zapiszStanSwiata();
+                rysujSwiat();
                 break;
             case 'i':
                 
