@@ -22,12 +22,15 @@ private:
     string logiSymulacji;
     int nrLog;
     bool czySymulacjaDziala;
+    bool czyLegendaPokazana;
+    bool czyLogiPokazane;
     
     
     Swiat(int szerokosc, int wysokosc);
     void rysujRamke();
     void rysujLogi();
     void rysujSwiat();
+    void rysujLegende();
 
     void wykonajTure();
     
