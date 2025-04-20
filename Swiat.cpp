@@ -205,7 +205,7 @@ void Swiat::zapiszStanSwiata(){
     if(plik.good()){
         cout << "Plik pomyślnie utworzony :) \n";
     }
-    plik << this->szerokosc << " " <<  this->wysokosc << endl;
+    plik << this->szerokosc << " " <<  this->wysokosc << " "  <<this->tura << endl;
 
     for(const auto& organizm : organizmy){
         if(organizm->getInicjatywa() == 0){
@@ -255,10 +255,10 @@ Swiat* Swiat::getStanSwiataZPliku(){
         else cout << "Nie istnieje taki plik! \n";        
     }while(!czyPlikPoprawny);
 
-    int w,h;
-    plikZSwiatem >> w >> h;
+    int w,h,t;
+    plikZSwiatem >> w >> h >> t;
     stanSwiata = new Swiat(w,h);
-
+    stanSwiata->setTura(t);
     string nazwa;
     int x,y,sila,wiek;  
 
@@ -325,4 +325,8 @@ char Swiat::getZnakZKlawiatury(){
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // Przywróć stare ustawienia
 
     return ch;
+}
+
+void Swiat::setTura(int tura){
+    this->tura = tura;
 }

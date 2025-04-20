@@ -60,5 +60,6 @@ public:
 
     char getZnakZKlawiatury();
     void zapiszStanSwiata();
+    void setTura(int tura);
     ~Swiat();
 };
