@@ -1,6 +1,6 @@
 #include "Roslina.hpp"
 
-Roslina::Roslina(string ikona, int sila, int x, int y):Organizm(x,y,ikona,sila,0){};
+Roslina::Roslina(string ikona, int sila, int x, int y,string nazwa, int wiek):Organizm(x,y,ikona,sila,0,nazwa, wiek){};
 
 void Roslina::akcja(){
     if(rand()%100+1 > prawdopodobienstwo)return;

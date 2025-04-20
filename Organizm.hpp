@@ -19,6 +19,7 @@ private:
     string ikona;
     int sila;
     int inicjatywa;//w turach
+    string nazwa;
     
     
 protected:
@@ -29,8 +30,10 @@ protected:
     Polozenie_t polozenie;
     Polozenie_t poprzedniePolozenie;
     const int mozliweRuchy[4][2] = {{0,-1},{-1,0},{0,1},{1,0}};//lewo, gora,prawo, dol    
+    bool czyUmiejetnoscWlaczona;
+    int licznikUmiejetnosci;
 public:
-    Organizm(int x, int y, string icon, int sila, int inicjatywa);
+    Organizm(int x, int y, string icon, int sila, int inicjatywa,string nazwa, int wiek = 0);
     Organizm(const Organizm& copy);
     virtual ~Organizm(){};
 
@@ -45,7 +48,10 @@ public:
     int getInicjatywa() const;
     int getDlugoscZycia() const;
     bool getCzyZyje();
+    string getNazwa();
     Polozenie_t getPoprzedniePolozenie();
+    bool getCzyUmiejetnoscWlanczona();
+    int getLicznikUmiejetnosci();
     
     bool setPolozenie(Polozenie_t nowePolozenie, bool czyPuste=false);
 

@@ -1,7 +1,7 @@
 #include "BarszczSosnowskiego.hpp"
 #include "../Zwierzeta/Zwierze.hpp"
 
-BarszczSosnowskiego::BarszczSosnowskiego(int x, int y):Roslina("🍄",10,x,y){
+BarszczSosnowskiego::BarszczSosnowskiego(int x, int y, int wiek):Roslina("🍄",10,x,y,"BarszczSosnowskiego",wiek){
     prawdopodobienstwo=10;
 }
 

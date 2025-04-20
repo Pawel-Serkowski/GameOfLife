@@ -6,9 +6,9 @@
 
 
 
-Czlowiek::Czlowiek(int x, int y) : Organizm(x,y,"🤠",5,4){
-    licznikUmiejetnosci = 5;
-    czyUmiejetnoscWlaczona = false;
+Czlowiek::Czlowiek(int x, int y, int sila,bool czyUmiejetnoscWlaczona, int licznikUmiejetnosci, int wiek) : Organizm(x,y,"🤠",sila,4,"Czlowiek",wiek){
+    this->licznikUmiejetnosci = licznikUmiejetnosci;
+    this->czyUmiejetnoscWlaczona = czyUmiejetnoscWlaczona;
 }
 
 void Czlowiek::akcja(){
@@ -29,10 +29,10 @@ void Czlowiek::akcja(){
     
     do{
         std::cout << "Wykonaj ruch czlowiekem (strzalkami) | p - umiejetnosc" << "\n";
-        char kierunek = getZnakZKlawiatury();
+        char kierunek = swiatRef->getZnakZKlawiatury();
         if (kierunek == 27) {
-            if (getZnakZKlawiatury() == '[') {
-                switch (getZnakZKlawiatury()) {
+            if (swiatRef->getZnakZKlawiatury() == '[') {
+                switch (swiatRef->getZnakZKlawiatury()) {
                     case 'A': x = 0;y = -1; czyRuch = true; break;
                     case 'B': x = 0;y = 1; czyRuch = true;break;
                     case 'C': x = 1;y = 0; czyRuch = true;break;
@@ -46,7 +46,7 @@ void Czlowiek::akcja(){
                 czyUmiejetnoscWlaczona = true;
             }else{
                 if(czyUmiejetnoscWlaczona == true) cout << "Twoja umiejetnosc jest juz wlaczona" << "\n";
-                if(czyUmiejetnoscWlaczona == false && licznikUmiejetnosci < 5) cout << "Umiejetnosc bedzie dostepna za: "<< 5 - licznikUmiejetnosci << " tur" << "\n";
+                if(czyUmiejetnoscWlaczona == false && licznikUmiejetnosci < 5) cout << "Umiejetnosc bedzie dostepna w ciagu: "<< 5 - licznikUmiejetnosci << " tur" << "\n";
             }   
         }
     }while(!czyRuch || !setPolozenie({getX()+x,getY()+y}));
@@ -82,21 +82,5 @@ void Czlowiek::kolizja(Organizm* atakujacyOrganizm){
 
 Organizm* Czlowiek::dziecko(){
     return new Czlowiek(*this);
-}
-
-char Czlowiek::getZnakZKlawiatury(){
-    termios oldt, newt;
-    char ch;
-
-    tcgetattr(STDIN_FILENO, &oldt);         // Zapisz bieżące ustawienia terminala
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);       // Wyłącz tryb kanoniczny i echo
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt); // Ustaw nowe ustawienia
-
-    ch = getchar();                         // Odczytaj znak
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // Przywróć stare ustawienia
-
-    return ch;
 }
 

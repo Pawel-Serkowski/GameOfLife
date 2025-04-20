@@ -1,6 +1,6 @@
 #include "WilczeJagody.hpp"
 
-WilczeJagody::WilczeJagody(int x, int y) : Roslina("🫐",99,x,y){
+WilczeJagody::WilczeJagody(int x, int y, int wiek) : Roslina("🫐",99,x,y,"WilczeJagody",wiek){
     this->prawdopodobienstwo = 20;
 }
 

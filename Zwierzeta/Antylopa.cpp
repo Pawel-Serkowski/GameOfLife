@@ -1,6 +1,6 @@
 #include "Antylopa.hpp"
 
-Antylopa::Antylopa(int x, int y) : Zwierze("🦌",4,4,x,y){};
+Antylopa::Antylopa(int x, int y, int sila, int wiek) : Zwierze("🦌",4,4,x,y,"Antylopa",wiek){};
 
 void Antylopa::akcja(){
     int ruch = rand()%8;

@@ -1,0 +1,13 @@
+12 12
+Wilk 1 1 9 0
+Antylopa 1 2 4 0
+Lis 1 3 3 0
+Owca 1 4 4 0
+Zolw 1 5 2 0
+Helikopter 1 6 10 0
+BarszczSosnowskiego 2 1 0
+Guarana 2 2 0
+Mlecz 2 3 0
+Trawa 2 4 0
+WilczeJagody 2 5 0
+Czlowiek 4 4 5 0 1 0

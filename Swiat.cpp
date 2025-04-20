@@ -1,5 +1,6 @@
 #include "Swiat.hpp"
 
+
 #include "Zwierzeta/Wilk.hpp"
 #include "Zwierzeta/Owca.hpp"
 #include "Zwierzeta/Lis.hpp"
@@ -135,12 +136,26 @@ void Swiat::wykonajTure(){
 }
 
 void Swiat::symulacja(){
+    czySymulacjaDziala = true;
     rysujSwiat();
-    getchar();
-    for(int i = 0; i < 30; i++){
-        wykonajTure();
-        rysujSwiat();
-        getchar();
+    cout << "Rozpocznij symulacje klikając k\n";
+    while(getZnakZKlawiatury() != 'k');
+    char znak;
+    while(czySymulacjaDziala){
+        cout << "Kliknij opcje w turze: \n ENTER -> przejdz dalej \n s - zapisz stan swiata \n ESC - zakoncz symulacje\n";
+        znak = getZnakZKlawiatury();
+        switch(znak){
+            case 's':
+                zapiszStanSwiata();
+                break;
+            case 27:
+                czySymulacjaDziala = false;
+                break;
+            default:
+                wykonajTure();
+                rysujSwiat();
+        }
+        
     }
 }
 
@@ -178,4 +193,136 @@ void Swiat::odejmijOrganizm(){
 
 Swiat::~Swiat(){
     organizmy.clear();
+}
+
+void Swiat::zapiszStanSwiata(){
+    string nazwaPliku;
+    cout << "Podaj nazwe pliku i rozszerzenie do ktorego chcesz zapisac stan swiata\n Nazwa pliku: ";
+    cin >> nazwaPliku;
+
+    fstream plik;
+    plik.open(nazwaPliku,ios::out);
+    if(plik.good()){
+        cout << "Plik pomyślnie utworzony :) \n";
+    }
+    plik << this->szerokosc << " " <<  this->wysokosc << endl;
+
+    for(const auto& organizm : organizmy){
+        if(organizm->getInicjatywa() == 0){
+            plik << organizm->getNazwa() << " ";
+            plik << organizm->getX()<< " ";
+            plik << organizm->getY()<< " ";
+            plik << organizm->getDlugoscZycia();
+        }else if(organizm->getNazwa() == "Czlowiek") {
+            plik << organizm->getNazwa()<< " ";
+            plik << organizm->getX()<< " ";
+            plik << organizm->getY()<< " ";
+            plik << organizm->getSila()<< " ";
+            plik << organizm->getCzyUmiejetnoscWlanczona()<< " ";
+            plik << organizm->getLicznikUmiejetnosci()<< " ";
+            plik << organizm->getDlugoscZycia();
+        }else{
+            plik << organizm->getNazwa()<< " ";
+            plik << organizm->getX()<< " ";
+            plik << organizm->getY()<< " ";
+            plik << organizm->getSila()<< " ";
+            plik << organizm->getDlugoscZycia();
+        }
+        plik << endl;
+    }
+    plik.close();
+
+    cout << "kliknij 'k' aby kontynuowac\n";
+    while(getZnakZKlawiatury() != 'k'); 
+}
+
+
+Swiat* Swiat::getStanSwiataZPliku(){
+    string tempNazwaPliku;
+    bool czyPlikPoprawny = false;
+    fstream plikZSwiatem;
+
+    if(stanSwiata){
+        delete stanSwiata;
+        stanSwiata = nullptr;
+    } 
+
+    do{
+        cout << " -- Wpisz nazwe pliku, z ktorego chcesz wziac stan swiata --  \n Nazwa pliku: ";
+        cin >> tempNazwaPliku;
+        plikZSwiatem.open(tempNazwaPliku);
+        if(plikZSwiatem.good())czyPlikPoprawny = true;
+        else cout << "Nie istnieje taki plik! \n";        
+    }while(!czyPlikPoprawny);
+
+    int w,h;
+    plikZSwiatem >> w >> h;
+    stanSwiata = new Swiat(w,h);
+
+    string nazwa;
+    int x,y,sila,wiek;  
+
+    while(plikZSwiatem >> nazwa){
+        stworzZwierzeZPliku(nazwa, &plikZSwiatem);
+    }
+
+    return stanSwiata;
+}
+
+void Swiat::stworzZwierzeZPliku(string nazwa, fstream *plik){
+    int x,y,sila,wiek,licznikUmiejetnosci;
+    bool czyUmiejetnoscWlaczona;
+    if(nazwa == "Wilk"){
+        *plik >> x >> y >> sila >> wiek;
+        new Wilk(x,y,sila,wiek);
+    }else if(nazwa == "Owca"){
+        *plik >> x >> y >> sila >> wiek;
+        new Owca(x,y,sila,wiek);
+    }else if(nazwa == "Antylopa"){
+        *plik >> x >> y >> sila >> wiek;
+        new Antylopa(x,y,sila,wiek);
+    }else if(nazwa == "Lis"){
+        *plik >> x >> y >> sila >> wiek;
+        new Lis(x,y,sila,wiek);
+    }else if(nazwa == "Zolw"){
+        *plik >> x >> y >> sila >> wiek;
+        new Zolw(x,y,sila,wiek);
+    }else if(nazwa == "BarszczSosnowskiego"){
+        *plik >> x >> y  >> wiek;
+        new BarszczSosnowskiego(x,y,wiek);
+    }else if(nazwa == "Guarana"){
+        *plik >> x >> y  >> wiek;
+        new Guarana(x,y,wiek);
+    }else if(nazwa == "Mlecz"){
+        *plik >> x >> y  >> wiek;
+        new Mlecz(x,y,wiek);
+    }else if(nazwa == "Trawa"){
+        *plik >> x >> y  >> wiek;
+        new Trawa(x,y,wiek);
+    }else if(nazwa == "WilczeJagody"){
+        *plik >> x >> y  >> wiek;
+        new WilczeJagody(x,y,wiek);
+    }else if(nazwa == "Czlowiek"){
+        *plik >> x >> y >> sila >>  czyUmiejetnoscWlaczona >> licznikUmiejetnosci  >> wiek;
+        new Czlowiek(x,y,sila,czyUmiejetnoscWlaczona,licznikUmiejetnosci,wiek);
+    }
+    else{
+        cout << "Nie mozna dodac zwierzecia: " + nazwa + "\nponiewaz nie wystepuje w symulacji taki gatunek \n";
+    }
+}
+
+char Swiat::getZnakZKlawiatury(){
+    termios oldt, newt;
+    char ch;
+
+    tcgetattr(STDIN_FILENO, &oldt);         // Zapisz bieżące ustawienia terminala
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);       // Wyłącz tryb kanoniczny i echo
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt); // Ustaw nowe ustawienia
+
+    ch = getchar();                         // Odczytaj znak
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // Przywróć stare ustawienia
+
+    return ch;
 }

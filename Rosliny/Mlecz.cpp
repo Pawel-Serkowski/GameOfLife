@@ -1,6 +1,6 @@
 #include "Mlecz.hpp"
 
-Mlecz::Mlecz(int x, int y) : Roslina("🌼",0,x,y){
+Mlecz::Mlecz(int x, int y, int wiek) : Roslina("🌼",0,x,y,"Mlecz",wiek){
     prawdopodobienstwo = 10;
 }
 
