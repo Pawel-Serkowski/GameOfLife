@@ -127,6 +127,9 @@ void Swiat::rysujRamke(){
 void Swiat::rysujLegende(){
     int x = 2*szerokosc+8;
     int y = 2;
+
+    cout<<"\033["<<0<<";"<<x<<"H";
+    cout << "Pawel Serkowski s203389";
     string legenda[12];
     legenda[0] = "---Legenda---";
     legenda[1] = "🦌 - Antylopa";
