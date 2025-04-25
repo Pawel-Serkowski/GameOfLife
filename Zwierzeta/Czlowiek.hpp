@@ -1,6 +1,6 @@
-#include "../Organizm.hpp"
+#include "Zwierze.hpp"
 
-class Czlowiek : public Organizm{
+class Czlowiek : public Zwierze{
 
 public:
     Czlowiek(int x, int y, int sila = 5,bool czyUmiejetnoscWlaczona= false, int licznikUmiejetnosci = 5, int wiek = 0);

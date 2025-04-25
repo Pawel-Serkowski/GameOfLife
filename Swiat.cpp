@@ -13,7 +13,7 @@
 #include "Rosliny/WilczeJagody.hpp"
 #include "Rosliny/BarszczSosnowskiego.hpp"
 
-#include "Czlowiek/Czlowiek.hpp"
+#include "Zwierzeta/Czlowiek.hpp"
 
 Swiat::Swiat(int szerokosc, int wysokosc){
     rozmiarRamki = 1;

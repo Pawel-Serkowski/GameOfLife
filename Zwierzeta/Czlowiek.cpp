@@ -6,7 +6,7 @@
 
 
 
-Czlowiek::Czlowiek(int x, int y, int sila,bool czyUmiejetnoscWlaczona, int licznikUmiejetnosci, int wiek) : Organizm(x,y,"🤠",sila,4,"Czlowiek",wiek){
+Czlowiek::Czlowiek(int x, int y, int sila,bool czyUmiejetnoscWlaczona, int licznikUmiejetnosci, int wiek) : Zwierze("🤠",sila,4,x,y,"Czlowiek",wiek){
     this->licznikUmiejetnosci = licznikUmiejetnosci;
     this->czyUmiejetnoscWlaczona = czyUmiejetnoscWlaczona;
 }
